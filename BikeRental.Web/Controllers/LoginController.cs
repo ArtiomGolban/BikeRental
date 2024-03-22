@@ -22,72 +22,54 @@ namespace BikeRental.Web.Controllers
             return View();
         }
 
-    // GET: Register
-    public ActionResult Register()
-    {
-        return View();
-    }
-
-    public LoginController()
+        // GET: Register
+        public ActionResult Register()
         {
-            var bl = new BusinessLogic.BusinessLogic();
-            _session = bl.GetSessionBL();
+            return View();
         }
 
-
-    // POST: Register
-    [HttpPost]
-    public ActionResult Register(ULoginData register)
-    {
-        if (ModelState.IsValid)
+        // POST: Register
+        [HttpPost]
+        public ActionResult Register(ULoginData register)
         {
-            ULoginData data = new ULoginData
+            if (ModelState.IsValid)
             {
-                Username = register.Username,
-                Email = register.Email,
-                Password = register.Password
-            };
+                ULoginData data = new ULoginData
+                {
+                    Username = register.Username,
+                    Email = register.Email,
+                    Password = register.Password
+                };
 
-            var userRegister = _session.UserRegister(data);
+                var userRegister = _session.UserRegister(data);
 
-            if (userRegister.Status)
-            {
-                // Redirect to login page after successful registration
-                return RedirectToAction("Index", "Login");
+                if (userRegister.Status)
+                {
+                    // Redirect to login page after successful registration
+                    return RedirectToAction("Index", "Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("error", "Registration failed");
+                    return View(register);
+                }
             }
-            else
-            {
-                ModelState.AddModelError("error", "Registration failed");
-                return View(register);
-            }
-        }
 
-     
-        return View(register);
-    }
-
-
-    // POST: Login
-    [HttpPost]
-    public ActionResult Login(UserLogin login)
-    {
-        if (ModelState.IsValid)
-
-            return View(new UserLogin());
+            return View(register);
         }
 
         // POST: Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(UserLogin login)
-
         {
-            ULoginData data = new ULoginData
+            if (ModelState.IsValid)
             {
-
-                Username = login.Username,
-                Password = login.Password
-            };
+                ULoginData data = new ULoginData
+                {
+                    Username = login.Username,
+                    Password = login.Password
+                };
 
                 var userLogin = _session.UserLogin(data);
 
@@ -99,12 +81,12 @@ namespace BikeRental.Web.Controllers
                 else
                 {
                     ModelState.AddModelError("error", "Invalid credentials");
-                    return View();
+                    return View(login);
                 }
             }
 
             // Model state is invalid, return to the login page
-            return RedirectToAction("Index", "Home");
+            return View(login);
         }
     }
 }
