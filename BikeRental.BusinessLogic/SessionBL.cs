@@ -10,5 +10,10 @@ namespace BikeRental.BusinessLogic
         {
             return userAuthLogic;
         }
+
+        public ULoginData UserRegister(ULoginData userAuthLogic)
+        {
+            return userRegisterlogic(userAuthLogic);
+        }
     }
 }

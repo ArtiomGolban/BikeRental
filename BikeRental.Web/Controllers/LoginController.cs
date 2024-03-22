@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using BikeRental.BusinessLogic.Interfaces;
 using System.Web.Mvc;
 using BikeRental.BusinessLogic;
-using BikeRental.BusinessLogic.Interfaces;
 using BikeRental.Domain.Entities.User;
 using BikeRental.Web.Models;
 
@@ -17,7 +13,6 @@ namespace BikeRental.Web.Controllers
         public LoginController()
         {
             var bl = new BusinessLogic.BusinessLogic();
-
             _session = bl.GetSessionBL();
         }
 
@@ -96,18 +91,20 @@ namespace BikeRental.Web.Controllers
 
                 var userLogin = _session.UserLogin(data);
 
-                if (userLogin.Status) { 
+                if (userLogin.Status)
+                {
+                    // Redirect to home page after successful login
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("error", "Invalid data");
-    
-                    return RedirectToAction("Index", "Home");
+                    ModelState.AddModelError("error", "Invalid credentials");
+                    return View();
                 }
             }
 
-            return RedirectToAction("Index");
+            // Model state is invalid, return to the login page
+            return RedirectToAction("Index", "Home");
         }
     }
 }
