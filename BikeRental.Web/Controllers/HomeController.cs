@@ -23,6 +23,11 @@ namespace BikeRental.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Listing()
+        {
+            return View();
+        }
     }
 
 

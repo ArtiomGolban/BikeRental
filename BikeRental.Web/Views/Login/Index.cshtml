@@ -1,24 +1,52 @@
-﻿
+@model BikeRental.Web.Models.UserLogin
+
 @{
     ViewBag.Title = "Login Page";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
 }
 
+<section class="h-100">
+    <div class="container h-100">
+        <div class="row justify-content-sm-center h-100">
+            <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+                <div class="text-center my-5"></div>
+                <div class="card shadow-lg">
+                    <div class="card-body p-5">
+                        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate", @autocomplete = "off", @style = "width: 23rem;" }))
+                        {
+                            <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
+                            <div class="mb-3">
+                                <label class="mb-2 text-muted" for="Username">Username</label>
+                                @Html.TextBoxFor(model => model.Username, new { @class = "form-control form-control-lg" })
+                                <div class="invalid-feedback">
+                                    Username is invalid
+                                </div>
+                            </div>
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<h2>Login page</h2>
-@Html.ValidationMessage("UserLogin")
+                            <div class="mb-3">
+                                <div class="mb-2 w-100">
+                                    <label class="text-muted" for="password">Password</label>
+                                </div>
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control form-control-lg" })
+                                <div class="invalid-feedback">
+                                    Password is required
+                                </div>
+                            </div>
 
-<form action="@Url.Action("Login", "Login")" method="post">
-    <input type="text" name="Credentials" value="user" />
-    <input type="password" name="Password" value="1234" />
-
-    <button type="submit">Login NOW</button>
-</form>
-
+                            <div class="form-check mb-3">
+                                <input type="checkbox" name="remember" id="remember" class="form-check-input">
+                                <label for="remember" class="form-check-label">Remember Me</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary d-block w-100">Login</button>
+                        }
+                    </div>
+                    <div class="card-footer py-3 border-0">
+                        <div class="text-center">
+                            Don't have an account? <a href="@Url.Action("Register", "Login")" class="text-dark">Create One</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
