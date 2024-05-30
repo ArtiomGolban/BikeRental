@@ -104,6 +104,7 @@ namespace BikeRental.Web.Controllers
             }
 
             return View();
+
         }
     }
 }
