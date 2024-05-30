@@ -1,67 +1,32 @@
+using System;
 using BikeRental.BusinessLogic.Interfaces;
 using System.Web.Mvc;
 using BikeRental.BusinessLogic;
 using BikeRental.Domain.Entities.User;
 using BikeRental.Web.Models;
+using System.Web;
 
 namespace BikeRental.Web.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
-        private readonly ISession _session;
-
-        public LoginController()
-        {
-            var bl = new BusinessLogic.BusinessLogic();
-            _session = bl.GetSessionBL();
-        }
-
         // GET: Index
         public ActionResult Index()
         {
-            return View();
-        }
+            SessionStatus();
 
-        // GET: Register
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        // POST: Register
-        [HttpPost]
-        public ActionResult Register(ULoginData register)
-        {
-            if (ModelState.IsValid)
+            if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] == "login")
             {
-                ULoginData data = new ULoginData
-                {
-                    Username = register.Username,
-                    Email = register.Email,
-                    Password = register.Password
-                };
-
-                var userRegister = _session.UserRegister(data);
-
-                if (userRegister.Status)
-                {
-                    // Redirect to login page after successful registration
-                    return RedirectToAction("Index", "Login");
-                }
-                else
-                {
-                    ModelState.AddModelError("error", "Registration failed");
-                    return View(register);
-                }
+                return RedirectToAction("Index", "Home");
             }
 
-            return View(register);
+            return View();
         }
 
         // POST: Login
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(UserLogin login)
+        public ActionResult Index(UserLogin login)
         {
             if (ModelState.IsValid)
             {
@@ -75,18 +40,70 @@ namespace BikeRental.Web.Controllers
 
                 if (userLogin.Status)
                 {
+                    HttpCookie cookie = _session.GenCookie(login.Username);
+                    ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+
                     // Redirect to home page after successful login
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
                     ModelState.AddModelError("error", "Invalid credentials");
-                    return View();
+                    return RedirectToAction("Index", "Login");
                 }
             }
 
-            // Model state is invalid, return to the login page
+            return View();
+        }
+
+        // GET: Logout
+        public ActionResult Logout()
+        {
+            SessionStatus();
+
+            if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] == "login")
+            {
+                SessionDestroy();
+            }
+
             return RedirectToAction("Index", "Home");
+        }
+
+        // GET: Register
+        public ActionResult Register()
+        {
+            SessionStatus();
+
+            if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] == "login")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
+        }
+
+        // POST: Register
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(ULoginData register)
+        {
+            if (ModelState.IsValid)
+            {
+                var userRegister = _session.UserRegister(register);
+
+                if (userRegister.Status)
+                {
+                    // Redirect to login page after successful registration
+                    return RedirectToAction("Index", "Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("error", "Registration failed");
+                    return View(register);
+                }
+            }
+
+            return View();
         }
     }
 }
