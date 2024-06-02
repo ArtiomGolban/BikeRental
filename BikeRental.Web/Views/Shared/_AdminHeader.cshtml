@@ -1,0 +1,23 @@
+﻿<div class="container">
+    <div class="row align-items-center position-relative">
+
+        <div class="col-3">
+            <div class="site-logo">
+                <a href="/"><img src="/images/logoAG3.png" /></a>
+            </div>
+        </div>
+
+        <div class="col-9  text-right">
+            <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span class="icon-menu h3 text-black"></span></a></span>
+
+            <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+                <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                    <li><a href="@Url.Action("Index","Admin")" class="nav-link">Home</a></li>
+                    <li><a href="@Url.Action("UsersList","Admin")" class="nav-link">Users</a></li>
+                    <li><a href="@Url.Action("AddUser", "Admin")" class="nav-link">Add New User</a></li>
+                    <li><a href="@Url.Action("Logout", "Login")" class="nav-link p-2 btn btn-danger text-light">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

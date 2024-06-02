@@ -1,0 +1,40 @@
+﻿@using BikeRental.Web.Extension
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Users list";
+}
+
+<div class="container">
+    <h1>User List</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Level</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@user.Level</td>
+                    <td>
+                        <a href="@Url.Action("UserEdit", "Admin", new { id = user.Id })" class="btn btn-info btn-sm">Edit</a>
+                        <form method="post" action="@Url.Action("DeleteUser", "Admin", new { id = user.Id })" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

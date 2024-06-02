@@ -1,0 +1,51 @@
+﻿@using System.Web.Optimization;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Admin</title>
+
+    <link rel="stylesheet" href="/fonts/icomoon/style.css">
+
+    @Styles.Render("~/bundles/bootstrap.min.css")
+    @Styles.Render("~/bundles/bootstrap-datepicker.css")
+    @Styles.Render("~/bundles/jquery.fancybox.min.css")
+    @Styles.Render("~/bundles/owl.carousel.min.css")
+    @Styles.Render("~/bundles/owl.theme.default.min.css")
+    @Styles.Render("~/bundles/flaticon.css")
+    @Styles.Render("~/bundles/aos.css")
+    @Styles.Render("~/bundles/style.css")
+
+
+
+</head>
+<body>
+
+    <header class="site-navbar site-navbar-target" role="banner">
+        @Html.Partial("_AdminHeader")
+    </header>
+
+    <div style="padding-top: 100px">
+        @RenderBody()
+    </div>
+
+
+
+
+    @Scripts.Render("~/bundles/jquery-3.3.1.min.js")
+    @Scripts.Render("~/bundles/popper.min.js")
+    @Scripts.Render("~/bundles/bootstrap.min.js")
+    @Scripts.Render("~/bundles/owl.carousel.min.js")
+    @Scripts.Render("~/bundles/jquery.sticky.js")
+    @Scripts.Render("~/bundles/jquery.waypoints.min.js")
+    @Scripts.Render("~/bundles/jquery.animateNumber.min.js")
+    @Scripts.Render("~/bundles/jquery.fancybox.min.js")
+    @Scripts.Render("~/bundles/jquery.easing.1.3.js")
+    @Scripts.Render("~/bundles/bootstrap-datepicker.min.js")
+    @Scripts.Render("~/bundles/aos.js")
+    @Scripts.Render("~/bundles/main.js")
+    @Scripts.Render("~/bundles/login.js")
+
+</body>
+</html>
