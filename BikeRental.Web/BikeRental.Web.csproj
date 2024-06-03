@@ -224,7 +224,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminUsersControllers.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminBikesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -232,12 +234,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin\BikeAdd.cs" />
+    <Compile Include="Models\Admin\BikeEdit.cs" />
     <Compile Include="Models\Admin\UserAdd.cs" />
     <Compile Include="Models\Admin\UserEdit.cs" />
-    <Compile Include="Models\DTo\AddUserResutl.cs" />
+    <Compile Include="Models\DTo\AddUserResult.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BikeService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -389,11 +394,14 @@
     <Content Include="Views\Shared\_AdminHeader.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Shared\_AuthHeader.cshtml" />
-    <Content Include="Views\Admin\AddUser.cshtml" />
+    <Content Include="Views\AdminUsers\Add.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\UserEdit.cshtml" />
-    <Content Include="Views\Admin\UsersList.cshtml" />
+    <Content Include="Views\AdminUsers\Edit.cshtml" />
+    <Content Include="Views\AdminUsers\List.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\AdminBikes\List.cshtml" />
+    <Content Include="Views\AdminBikes\Add.cshtml" />
+    <Content Include="Views\AdminBikes\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

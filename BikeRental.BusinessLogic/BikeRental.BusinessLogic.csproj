@@ -71,7 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic.cs" />
-    <Compile Include="Core\AdminApi.cs" />
     <Compile Include="Core\UserApi.cs" />
     <Compile Include="DataBase\BikeContext.cs" />
     <Compile Include="DataBase\SessionContext.cs" />
@@ -83,6 +82,14 @@
     <Compile Include="Migrations\202406022106466_CreateSessionsTable.cs" />
     <Compile Include="Migrations\202406022106466_CreateSessionsTable.Designer.cs">
       <DependentUpon>202406022106466_CreateSessionsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406022154080_CreateBikesandReservationsTable.cs" />
+    <Compile Include="Migrations\202406022154080_CreateBikesandReservationsTable.Designer.cs">
+      <DependentUpon>202406022154080_CreateBikesandReservationsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406030004337_RemoveAvailabilityFieldsFromBikesTable.cs" />
+    <Compile Include="Migrations\202406030004337_RemoveAvailabilityFieldsFromBikesTable.Designer.cs">
+      <DependentUpon>202406030004337_RemoveAvailabilityFieldsFromBikesTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,6 +127,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202406022106466_CreateSessionsTable.resx">
       <DependentUpon>202406022106466_CreateSessionsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406022154080_CreateBikesandReservationsTable.resx">
+      <DependentUpon>202406022154080_CreateBikesandReservationsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406030004337_RemoveAvailabilityFieldsFromBikesTable.resx">
+      <DependentUpon>202406030004337_RemoveAvailabilityFieldsFromBikesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,7 +3,9 @@ using System.Data.Entity;
 using System.Linq;
 using BikeRental.BusinessLogic.DataBase;
 using BikeRental.Domain.Entities.User;
+using BikeRental.Domain.Enums;
 using BikeRental.Web.Models;
+using BikeRental.Web.Models.Admin;
 using UserEdit = BikeRental.Web.Models.Admin.UserEdit;
 
 namespace BikeRental.Web.Services
@@ -52,6 +54,29 @@ namespace BikeRental.Web.Services
                 _dbContext.Users.Remove(user);
                 _dbContext.SaveChanges();
             }
+        }
+
+        public UserDBTable AddUser(UserAdd userAdd)
+        {
+            var userExist = _dbContext.Users.Any(u => u.Name == userAdd.Name);
+
+            if (userExist)
+            {
+                return null;
+            }
+
+            var newUser = new UserDBTable
+            {
+                Name = userAdd.Name,
+                Password = userAdd.Password, // Remember to hash passwords in a real application
+                Email = userAdd.Email,
+                Level = UserRole.User
+            };
+
+            _dbContext.Users.Add(newUser);
+            _dbContext.SaveChanges();
+
+            return newUser;
         }
     }
 }

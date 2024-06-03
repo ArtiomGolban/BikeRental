@@ -7,7 +7,7 @@
 
 <div class="container">
     <h1>Add User</h1>
-    @using (Html.BeginForm("AddUser", "Admin", FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate" }))
+    @using (Html.BeginForm("Add", "AdminUsers", FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate" }))
     {
         @Html.AntiForgeryToken()
 

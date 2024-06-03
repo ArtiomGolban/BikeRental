@@ -6,7 +6,11 @@
 }
 
 <div class="container">
-    <h1>User List</h1>
+    <h1>
+        User List
+        <a href="@Url.Action("Add", "AdminUsers")" class="btn btn-success btn-sm">Add</a>
+    </h1>
+
 
     <table class="table">
         <thead>
@@ -27,8 +31,8 @@
                     <td>@user.Email</td>
                     <td>@user.Level</td>
                     <td>
-                        <a href="@Url.Action("UserEdit", "Admin", new { id = user.Id })" class="btn btn-info btn-sm">Edit</a>
-                        <form method="post" action="@Url.Action("DeleteUser", "Admin", new { id = user.Id })" style="display:inline;">
+                        <a href="@Url.Action("Edit", "AdminUsers", new { id = user.Id })" class="btn btn-info btn-sm">Edit</a>
+                        <form method="post" action="@Url.Action("Delete", "AdminUsers", new { id = user.Id })" style="display:inline;">
                             @Html.AntiForgeryToken()
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>

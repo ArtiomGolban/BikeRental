@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using BikeRental.BusinessLogic.DataBase;
 using BikeRental.BusinessLogic.DBModel;
+using BikeRental.Domain.Entities.Bikes;
 using BikeRental.Domain.Entities.User;
 using BikeRental.Domain.Enums;
 using BikeRental.Helpers;
@@ -107,6 +108,49 @@ public class UserApi
         if (curentUser == null) return null;
 
         return curentUser;
+    }
+
+    internal ReservationResp BikeRentLogic(ReservationData data)
+    {
+        using (var db = new BikeContext())
+        {
+            var overlappingBookings = db.Reservations.Any(b => b.BikeId == data.BikeID.BikeId &&
+                                                                b.StartDate < data.EndDateTime && b.EndDate > data.StartDateTime);
+
+            var Bike = db.Bikes.FirstOrDefault(b => b.BikeId == data.BikeID.BikeId);
+            if (!overlappingBookings)
+            {
+                var newReservation = new ReservationDBTable()
+                {
+                    StartDate = data.StartDateTime,
+                    EndDate = data.EndDateTime,
+                    TotalPrice = CalculateFinalPrice(data),
+                    BikeId = Bike.BikeId
+                };
+
+                db.Reservations.Add(newReservation);
+                db.SaveChanges();
+
+                return new ReservationResp() { Status = true }; //success
+            }
+        }
+        return new ReservationResp() { Status = false };
+
+    }
+
+    internal decimal CalculateFinalPrice(ReservationData data)
+    {
+        int price = 0;
+        using (var context = new BikeContext())
+        {
+            var Bike = context.Bikes.FirstOrDefault(r => r.BikeId == data.BikeID.BikeId);
+            if (Bike != null)
+            {
+                int numofDays = (int)(data.EndDateTime - data.StartDateTime).TotalDays;
+                price = numofDays * Bike.PricePerDay;
+            }
+        }
+        return price;
     }
 
 }

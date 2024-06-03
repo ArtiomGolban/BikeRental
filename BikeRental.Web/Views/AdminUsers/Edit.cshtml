@@ -1,0 +1,34 @@
+﻿@model BikeRental.Domain.Entities.User.UserDBTable
+@using BikeRental.Web.Extension
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "User Edit";
+}
+
+<div class="container mt-5">
+    <h1>User Edit</h1>
+
+    @using (Html.BeginForm("Edit", "AdminUsers", new { id = Model.Id }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Enter name", @required = "required" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Enter email", @required = "required" })
+        </div>
+
+        <div class="mb-3">
+            @Html.Label("NewPassword", "New password")
+            @Html.Password("NewPassword", "", new { @class = "form-control", @placeholder = "Enter new password", @required = "required" })
+        </div>
+
+        <input class="btn btn-success" type="submit" value="Save" />
+    }
+</div>

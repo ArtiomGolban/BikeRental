@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using BikeRental.Domain.Entities.Bikes;
 using BikeRental.Domain.Entities.User;
 
 namespace BikeRental.BusinessLogic.DataBase
@@ -15,6 +16,11 @@ namespace BikeRental.BusinessLogic.DataBase
         {
 
         }
+
         public virtual DbSet<UserDBTable> Users { get; set; }
+
+        public virtual DbSet<BikeDBTable> Bikes { get; set; }
+        
+        public virtual DbSet<ReservationDBTable> Reservations { get; set; }
     }
 }

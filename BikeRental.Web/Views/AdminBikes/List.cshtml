@@ -1,0 +1,46 @@
+﻿@using BikeRental.Web.Extension
+
+@{
+    ViewBag.Title = "Bikes List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h1>
+        Bikes List
+        <a href="@Url.Action("Add", "AdminBikes")" class="btn btn-success btn-sm">Add</a>
+    </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Price per day</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bike in Model)
+            {
+                <tr>
+                    <td>@bike.BikeId</td>
+                    <td>@bike.Name</td>
+                    <td>@bike.Type</td>
+                    <td>@bike.PricePerDay</td>
+                    <td><img src="@bike.PhotoUrl" width="100"/></td>
+
+                    <td>
+                        <a href="@Url.Action("Edit", "AdminBikes", new { id = bike.BikeId })" class="btn btn-info btn-sm">Edit</a>
+                        <form method="post" action="@Url.Action("Delete", "AdminBikes", new { id = bike.BikeId })" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
