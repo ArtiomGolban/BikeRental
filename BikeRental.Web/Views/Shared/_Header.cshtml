@@ -15,15 +15,18 @@
 
             <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                    @if (System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
+                    {
+                        <li class="active"><a href="/" class="nav-link">Home</a></li>
+                        <li><a href="@Url.Action("About", "Home")" class="nav-link">About</a></li>
+                    }
+
+                    
+
                     @if (System.Web.HttpContext.Current.Session["LoginStatus"] == "login")
                     {
                         <li>Balance: @System.Web.HttpContext.Current.GetMySessionObject().Balance </li>
-                    }
-
-                    <li class="active"><a href="/" class="nav-link">Home</a></li>
-                    <li><a href="@Url.Action("Listing", "Home")" class="nav-link">Listing</a></li>
-                    @if (System.Web.HttpContext.Current.Session["LoginStatus"] == "login")
-                    {
+                        <li><a href="@Url.Action("Listing", "Home")" class="nav-link">Listing</a></li>
                         <li><a href="@Url.Action("MyList", "Reservations")" class="nav-link">My reservations</a></li>
                         <li><a href="@Url.Action("Index", "Account")" class="nav-link">Account</a></li>
                         if (@System.Web.HttpContext.Current.GetMySessionObject().Level == UserRole.Admin)
