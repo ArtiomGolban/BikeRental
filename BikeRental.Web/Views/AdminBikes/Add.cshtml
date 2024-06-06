@@ -1,0 +1,40 @@
+﻿@model BikeRental.Web.Models.Admin.BikeAdd
+
+@{
+    ViewBag.Title = "Add Bike";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h1>Add Bike</h1>
+    @using (Html.BeginForm("Add", "AdminBikes", FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Enter name", @required = "required" })
+            <div class="invalid-feedback">Please enter a name.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="type" class="form-label">Type</label>
+            @Html.TextBoxFor(model => model.Type, new { @class = "form-control", @placeholder = "Enter type", @required = "required" })
+            <div class="invalid-feedback">Please enter a type.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="pricePerDay" class="form-label">Price Per Day</label>
+            @Html.TextBoxFor(model => model.PricePerDay, new { @class = "form-control", @placeholder = "Enter price per day", @required = "required", @type = "number" })
+            <div class="invalid-feedback">Please enter a valid price per day.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="photoUrl" class="form-label">Photo URL</label>
+            @Html.TextBoxFor(model => model.PhotoUrl, new { @class = "form-control", @placeholder = "Enter photo URL", @required = "required", @type = "url" })
+            <div class="invalid-feedback">Please enter a valid photo URL.</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Bike</button>
+    }
+</div>

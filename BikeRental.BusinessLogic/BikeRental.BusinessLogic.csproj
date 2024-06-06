@@ -71,11 +71,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic.cs" />
-    <Compile Include="Core\AdminApi.cs" />
     <Compile Include="Core\UserApi.cs" />
     <Compile Include="DataBase\BikeContext.cs" />
     <Compile Include="DataBase\SessionContext.cs" />
     <Compile Include="Interfaces\ISession.cs" />
+    <Compile Include="Migrations\202406022104144_CreateUsersTable.cs" />
+    <Compile Include="Migrations\202406022104144_CreateUsersTable.Designer.cs">
+      <DependentUpon>202406022104144_CreateUsersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406022106466_CreateSessionsTable.cs" />
+    <Compile Include="Migrations\202406022106466_CreateSessionsTable.Designer.cs">
+      <DependentUpon>202406022106466_CreateSessionsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406022154080_CreateBikesandReservationsTable.cs" />
+    <Compile Include="Migrations\202406022154080_CreateBikesandReservationsTable.Designer.cs">
+      <DependentUpon>202406022154080_CreateBikesandReservationsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406052358094_AddBalanceFieldToUsersTable.cs" />
+    <Compile Include="Migrations\202406052358094_AddBalanceFieldToUsersTable.Designer.cs">
+      <DependentUpon>202406052358094_AddBalanceFieldToUsersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406062126430_SyncMigrationChanges1.cs" />
+    <Compile Include="Migrations\202406062126430_SyncMigrationChanges1.Designer.cs">
+      <DependentUpon>202406062126430_SyncMigrationChanges1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionBL.cs" />
   </ItemGroup>
@@ -88,9 +108,6 @@
       <Project>{913a4b80-f433-44c6-aee4-803e8e01ae4f}</Project>
       <Name>BikeRental.Helpers</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.7.1.intellisense.js" />
@@ -107,6 +124,23 @@
     <None Include="packages.config" />
     <None Include="Scripts\jquery-3.7.1.min.map" />
     <None Include="Scripts\jquery-3.7.1.slim.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202406022104144_CreateUsersTable.resx">
+      <DependentUpon>202406022104144_CreateUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406022106466_CreateSessionsTable.resx">
+      <DependentUpon>202406022106466_CreateSessionsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406022154080_CreateBikesandReservationsTable.resx">
+      <DependentUpon>202406022154080_CreateBikesandReservationsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406052358094_AddBalanceFieldToUsersTable.resx">
+      <DependentUpon>202406052358094_AddBalanceFieldToUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406062126430_SyncMigrationChanges1.resx">
+      <DependentUpon>202406062126430_SyncMigrationChanges1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

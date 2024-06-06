@@ -11,7 +11,7 @@ namespace BikeRental.BusinessLogic.DBModel
 {
     public class SessionContext : DbContext
     {
-        public SessionContext() : base("name=BikeRental")
+        public SessionContext() : base("name=BikeRentalProject")
         {
         }
 

@@ -1,0 +1,39 @@
+﻿@model BikeRental.Web.Models.Admin.UserAdd
+
+@{
+    ViewBag.Title = "Add User";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h1>Add User</h1>
+    @using (Html.BeginForm("Add", "AdminUsers", FormMethod.Post, new { @class = "needs-validation", @novalidate = "novalidate" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Enter name", @required = "required" })
+            <div class="invalid-feedback">Please enter a name.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Enter email", @required = "required", @type = "email" })
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Enter password", @required = "required" })
+            <div class="invalid-feedback">Please enter a password.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="balance" class="form-label">Balance</label>
+            @Html.TextBoxFor(model => model.Balance, new { @type = "number", @class = "form-control", @placeholder = "Enter balance", @required = "required" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add User</button>
+    }
+</div>

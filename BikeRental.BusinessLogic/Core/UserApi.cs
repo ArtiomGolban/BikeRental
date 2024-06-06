@@ -2,12 +2,13 @@
 using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Web;
 using BikeRental.BusinessLogic.DataBase;
 using BikeRental.BusinessLogic.DBModel;
+using BikeRental.Domain.Entities.Bikes;
 using BikeRental.Domain.Entities.User;
 using BikeRental.Domain.Enums;
 using BikeRental.Helpers;
-using System.Web;
 
 public class UserApi
 {

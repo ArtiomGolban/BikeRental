@@ -69,6 +69,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Bikes\BikeDBTable.cs" />
+    <Compile Include="Entities\Bikes\ReservationsDBTable.cs" />
     <Compile Include="Entities\User\SessionDBTable.cs" />
     <Compile Include="Entities\User\ULoginData.cs" />
     <Compile Include="Entities\User\UserDBTable.cs" />
@@ -97,6 +99,7 @@
     <None Include="Scripts\jquery-3.7.1.min.map" />
     <None Include="Scripts\jquery-3.7.1.slim.min.map" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
