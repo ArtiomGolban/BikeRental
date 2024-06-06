@@ -7,13 +7,13 @@ namespace BikeRental.BusinessLogic.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class RemoveAvailabilityFieldsFromBikesTable : IMigrationMetadata
+    public sealed partial class SyncMigrationChanges1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveAvailabilityFieldsFromBikesTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SyncMigrationChanges1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202406030004337_RemoveAvailabilityFieldsFromBikesTable"; }
+            get { return "202406062126430_SyncMigrationChanges1"; }
         }
         
         string IMigrationMetadata.Source

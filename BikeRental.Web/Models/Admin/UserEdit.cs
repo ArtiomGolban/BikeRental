@@ -14,5 +14,7 @@ namespace BikeRental.Web.Models.Admin
         public string Email { get; set; }
 
         public UserRole Level { get; set; }
+
+        public decimal Balance { get; set; }
     }
 }   

@@ -228,6 +228,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminBikesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Extension\HttpContextExtensions.cs" />
@@ -239,9 +240,11 @@
     <Compile Include="Models\Admin\UserAdd.cs" />
     <Compile Include="Models\Admin\UserEdit.cs" />
     <Compile Include="Models\DTo\AddUserResult.cs" />
+    <Compile Include="Models\ReservationCreate.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ReservationService.cs" />
     <Compile Include="Services\BikeService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
@@ -402,6 +405,8 @@
     <Content Include="Views\AdminBikes\List.cshtml" />
     <Content Include="Views\AdminBikes\Add.cshtml" />
     <Content Include="Views\AdminBikes\Edit.cshtml" />
+    <Content Include="Views\Reservations\Create.cshtml" />
+    <Content Include="Views\Reservations\MyList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

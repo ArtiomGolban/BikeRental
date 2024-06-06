@@ -15,33 +15,32 @@
                         Name = c.String(),
                         Type = c.String(),
                         PricePerDay = c.Int(nullable: false),
-                        PhotoUrl = c.String(),
-                        AvailabilityEnd = c.DateTime(nullable: false),
-                        AvailabilityStart = c.DateTime(nullable: false),
+                        PhotoUrl = c.String()
                 })
                 .PrimaryKey(t => t.BikeId);
 
             CreateTable(
-                "dbo.ReservationDBTables",
-                c => new
+                    "dbo.ReservationDBTables",
+                    c => new
                     {
                         ReservationId = c.Int(nullable: false, identity: true),
                         BikeId = c.Int(nullable: false),
                         StartDate = c.DateTime(nullable: false),
                         EndDate = c.DateTime(nullable: false),
                         TotalPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        UserId_Id = c.Int(),
+                        UserId = c.Int(nullable: false),
+                        Paid = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ReservationId)
-                .ForeignKey("dbo.UserDBTables", t => t.UserId_Id)
-                .Index(t => t.UserId_Id);
-            
+                .Index(t => t.UserId)
+                .Index(t => t.BikeId);
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.ReservationDBTables", "UserId_Id", "dbo.UserDBTables");
-            DropIndex("dbo.ReservationDBTables", new[] { "UserId_Id" });
+            DropIndex("dbo.ReservationDBTables", new[] { "BikeId" });
+            DropIndex("dbo.ReservationDBTables", new[] { "UserId" });
+
             DropTable("dbo.ReservationDBTables");
             DropTable("dbo.BikeDBTables");
         }

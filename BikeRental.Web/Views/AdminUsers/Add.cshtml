@@ -29,6 +29,11 @@
             <div class="invalid-feedback">Please enter a password.</div>
         </div>
 
+        <div class="mb-3">
+            <label for="balance" class="form-label">Balance</label>
+            @Html.TextBoxFor(model => model.Balance, new { @type = "number", @class = "form-control", @placeholder = "Enter balance", @required = "required" })
+        </div>
+
         <button type="submit" class="btn btn-primary">Add User</button>
     }
 </div>

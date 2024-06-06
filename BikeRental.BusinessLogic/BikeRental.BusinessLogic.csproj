@@ -87,9 +87,13 @@
     <Compile Include="Migrations\202406022154080_CreateBikesandReservationsTable.Designer.cs">
       <DependentUpon>202406022154080_CreateBikesandReservationsTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202406030004337_RemoveAvailabilityFieldsFromBikesTable.cs" />
-    <Compile Include="Migrations\202406030004337_RemoveAvailabilityFieldsFromBikesTable.Designer.cs">
-      <DependentUpon>202406030004337_RemoveAvailabilityFieldsFromBikesTable.cs</DependentUpon>
+    <Compile Include="Migrations\202406052358094_AddBalanceFieldToUsersTable.cs" />
+    <Compile Include="Migrations\202406052358094_AddBalanceFieldToUsersTable.Designer.cs">
+      <DependentUpon>202406052358094_AddBalanceFieldToUsersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406062126430_SyncMigrationChanges1.cs" />
+    <Compile Include="Migrations\202406062126430_SyncMigrationChanges1.Designer.cs">
+      <DependentUpon>202406062126430_SyncMigrationChanges1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,8 +135,11 @@
     <EmbeddedResource Include="Migrations\202406022154080_CreateBikesandReservationsTable.resx">
       <DependentUpon>202406022154080_CreateBikesandReservationsTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202406030004337_RemoveAvailabilityFieldsFromBikesTable.resx">
-      <DependentUpon>202406030004337_RemoveAvailabilityFieldsFromBikesTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202406052358094_AddBalanceFieldToUsersTable.resx">
+      <DependentUpon>202406052358094_AddBalanceFieldToUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406062126430_SyncMigrationChanges1.resx">
+      <DependentUpon>202406062126430_SyncMigrationChanges1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

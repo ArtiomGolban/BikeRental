@@ -117,48 +117,48 @@
 
             }
 
-                [HttpPost]
-                [ValidateAntiForgeryToken]
-                public ActionResult Edit(int id, BikeEdit bikeEdit)
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public ActionResult Edit(int id, BikeEdit bikeEdit)
+            {
+                SessionStatus();
+
+                if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
                 {
-                    SessionStatus();
-
-                    if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
-                    {
-                        return RedirectToAction("Index", "Login");
-                    }
-
-                    if (System.Web.HttpContext.Current.GetMySessionObject().Level != UserRole.Admin)
-                    {
-                        return new HttpStatusCodeResult(403, "Forbidden");
-                    }
-
-                    var bike = _bikeService.UpdateBike(id, bikeEdit);
-
-                    return View(bike);
+                    return RedirectToAction("Index", "Login");
                 }
 
-
-                [HttpPost]
-                [ValidateAntiForgeryToken]
-                public ActionResult Delete(int id)
+                if (System.Web.HttpContext.Current.GetMySessionObject().Level != UserRole.Admin)
                 {
-                    SessionStatus();
-
-                    if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
-                    {
-                        return RedirectToAction("Index", "Login");
-                    }
-
-                    if (System.Web.HttpContext.Current.GetMySessionObject().Level != UserRole.Admin)
-                    {
-                        return new HttpStatusCodeResult(403, "Forbidden");
-                    }
-
-                    _bikeService.DeleteBike(id);
-
-                    return RedirectToAction("List");
+                    return new HttpStatusCodeResult(403, "Forbidden");
                 }
 
+                var bike = _bikeService.UpdateBike(id, bikeEdit);
+
+                return View(bike);
             }
+
+
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public ActionResult Delete(int id)
+            {
+                SessionStatus();
+
+                if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+
+                if (System.Web.HttpContext.Current.GetMySessionObject().Level != UserRole.Admin)
+                {
+                    return new HttpStatusCodeResult(403, "Forbidden");
+                }
+
+                _bikeService.DeleteBike(id);
+
+                return RedirectToAction("List");
+            }
+
         }
+    }

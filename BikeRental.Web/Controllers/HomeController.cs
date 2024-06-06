@@ -5,17 +5,27 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BikeRental.Web.Models;
+using BikeRental.Web.Services;
 
 namespace BikeRental.Web.Controllers
 {
     public class HomeController : BaseController
     {
+        private readonly BikeService _bikeService;
+
+        public HomeController() : base()
+        {
+            _bikeService = new BikeService();
+        }
+
         // GET: Home
         public ActionResult Index()
         {
             SessionStatus();
 
-            return View();
+            var bikes = _bikeService.GetAll();
+
+            return View(bikes);
         }
 
         public ActionResult About()
@@ -36,7 +46,9 @@ namespace BikeRental.Web.Controllers
         {
             SessionStatus();
 
-            return View();
+            var bikes = _bikeService.GetAll();
+
+            return View(bikes);
         }
     }
 

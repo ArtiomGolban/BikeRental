@@ -26,7 +26,12 @@
 
         <div class="mb-3">
             @Html.Label("NewPassword", "New password")
-            @Html.Password("NewPassword", "", new { @class = "form-control", @placeholder = "Enter new password", @required = "required" })
+            @Html.Password("NewPassword", "", new { @class = "form-control", @placeholder = "Enter new password" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Balance)
+            @Html.TextBoxFor(model => model.Balance, new { @type="number", @class = "form-control", @placeholder = "Enter balance", @required = "required" })
         </div>
 
         <input class="btn btn-success" type="submit" value="Save" />

@@ -71,8 +71,6 @@
   <ItemGroup>
     <Compile Include="Entities\Bikes\BikeDBTable.cs" />
     <Compile Include="Entities\Bikes\ReservationsDBTable.cs" />
-    <Compile Include="Entities\User\ReservationData.cs" />
-    <Compile Include="Entities\User\ReservationResp.cs" />
     <Compile Include="Entities\User\SessionDBTable.cs" />
     <Compile Include="Entities\User\ULoginData.cs" />
     <Compile Include="Entities\User\UserDBTable.cs" />

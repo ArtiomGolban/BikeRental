@@ -35,6 +35,7 @@ namespace BikeRental.Web.Services
 
             user.Name = userEdit.Name;
             user.Email = userEdit.Email;
+            user.Balance = userEdit.Balance;
 
             if (userEdit.NewPassword != null)
             {
@@ -70,7 +71,8 @@ namespace BikeRental.Web.Services
                 Name = userAdd.Name,
                 Password = userAdd.Password, // Remember to hash passwords in a real application
                 Email = userAdd.Email,
-                Level = UserRole.User
+                Level = UserRole.User,
+                Balance = userAdd.Balance
             };
 
             _dbContext.Users.Add(newUser);
