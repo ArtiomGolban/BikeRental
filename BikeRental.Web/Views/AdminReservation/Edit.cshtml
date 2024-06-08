@@ -1,0 +1,40 @@
+﻿@model BikeRental.Domain.Entities.Bikes.ReservationDBTable
+@using BikeRental.Web.Extension
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Edit Reservation";
+}
+
+<div class="container mt-5">
+    <h1>Edit Reservation</h1>
+
+    @using (Html.BeginForm("Edit", "AdminReservation", new { id = Model.ReservationId }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ReservationId)
+
+        <div class="mb-3">
+
+            <div class="form-control-wrap">
+                @Html.LabelFor(model => model.StartDate)
+                <span class="icon icon-date_range"></span>
+                @Html.TextBoxFor(model => model.StartDate, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker px-3", @id = "cf-3", @placeholder = "Pick up" })
+
+            </div>
+        </div>
+
+        <div class="mb-3">
+
+            <div class="form-control-wrap">
+                @Html.LabelFor(model => model.EndDate)
+                <span class="icon icon-date_range"></span>
+                @Html.TextBoxFor(model => model.EndDate, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker px-3", @id = "cf-4", @placeholder = "Drop off" })
+
+            </div>
+        </div>
+
+        <input class="btn btn-success" type="submit" value="Save" />
+    }
+</div>
+}

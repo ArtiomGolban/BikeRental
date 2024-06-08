@@ -2,26 +2,26 @@
 
 @{
     ViewBag.Title = "My reservations";
-    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-}
+
 <br />
 <br />
 <br />
 <div class="container">
     <h1>
-        All reservations
+        My reservations
     </h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>BikeId</th>
+                <th>UserID</th>
                 <th>Time interval</th>
                 <th>Cost</th>
                 <th>Paid?</th>
                 <th>Actions</th>
-                <td></td>
             </tr>
         </thead>
         <tbody>
@@ -29,10 +29,10 @@
             {
                 <tr>
                     <td>@reservation.BikeId</td>
+                    <td>@reservation.UserId</td>
                     <td>@reservation.StartDate.ToString("MM/dd/yyyy") - @reservation.EndDate.ToString("MM/dd/yyyy")</td>
                     <td>@reservation.TotalPrice</td>
                     <td>
-
                         @if (reservation.Paid)
                         {
                             <span class="badge badge-success">Yes</span>
@@ -43,20 +43,15 @@
                         }
                     </td>
                     <td>
+                        <a href="@Url.Action("Edit", "AdminReservation", new { id = reservation.ReservationId })" class="btn btn-info btn-sm">Change Date</a>
 
                         @if (!reservation.Paid)
                         {
-                            <form method="post" action="@Url.Action("Pay", "Reservations", new { id = reservation.ReservationId })" style="display:inline;">
-                                @Html.AntiForgeryToken()
-                                <button type="submit" class="btn btn-success btn-sm">Pay</button>
-                            </form>
-
-                            <form method="post" action="@Url.Action("Cancel", "Reservations", new { id = reservation.ReservationId })" style="display:inline;">
+                            <form method="post" action="@Url.Action("Cancel", "AdminReservation", new { id = reservation.ReservationId })" style="display:inline;">
                                 @Html.AntiForgeryToken()
                                 <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
                             </form>
                         }
-                        <a href="@Url.Action("Edit", "Reservations", new { id = reservation.ReservationId })" class="btn btn-info btn-sm">Change Date</a>
                     </td>
                 </tr>
             }

@@ -1,4 +1,5 @@
-﻿@using BikeRental.Domain.Enums
+﻿
+@using BikeRental.Domain.Enums
 @using BikeRental.Web.Extension
 
 <div class="container">
@@ -21,17 +22,25 @@
                         <li><a href="@Url.Action("About", "Home")" class="nav-link">About</a></li>
                     }
 
-                    
+
 
                     @if (System.Web.HttpContext.Current.Session["LoginStatus"] == "login")
                     {
-                        <li>Balance: @System.Web.HttpContext.Current.GetMySessionObject().Balance </li>
-                        <li><a href="@Url.Action("Listing", "Home")" class="nav-link">Listing</a></li>
-                        <li><a href="@Url.Action("MyList", "Reservations")" class="nav-link">My reservations</a></li>
-                        <li><a href="@Url.Action("Index", "Account")" class="nav-link">Account</a></li>
+
+
+
+                        if (@System.Web.HttpContext.Current.GetMySessionObject().Level == UserRole.User)
+                        {
+                            <li>Balance: @System.Web.HttpContext.Current.GetMySessionObject().Balance </li>
+                            <li><a href="@Url.Action("Listing", "Home")" class="nav-link">Listing</a></li>
+                            <li><a href="@Url.Action("Index", "Account")" class="nav-link">Account</a></li>
+
+                        }
+
                         if (@System.Web.HttpContext.Current.GetMySessionObject().Level == UserRole.Admin)
                         {
                             <li><a href="@Url.Action("Index", "Admin")" class="nav-link">Admin</a></li>
+
                         }
                         <li><a href="@Url.Action("Logout", "Login")" class="nav-link p-2 btn btn-danger text-light">Logout</a></li>
                     }
