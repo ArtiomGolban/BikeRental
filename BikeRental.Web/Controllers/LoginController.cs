@@ -93,8 +93,8 @@ namespace BikeRental.Web.Controllers
 
                 if (userRegister.Status)
                 {
-                    // Redirect to login page after successful registration
-                    return RedirectToAction("Index", "Login");
+                    // Redirect to home page after successful login
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

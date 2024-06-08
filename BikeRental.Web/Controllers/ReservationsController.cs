@@ -126,8 +126,35 @@ namespace BikeRental.Web.Controllers
             return RedirectToAction("MyList");
         }
 
+        public ActionResult Edit(int id)
+        {
+            SessionStatus();
 
+            if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            var reservation = _reservationService.GetById(id);
+
+            return View(reservation);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, ReservationEdit reservationEdit)
+        {
+            SessionStatus();
+
+            if ((string)System.Web.HttpContext.Current.Session["LoginStatus"] != "login")
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+
+            var reservation = _reservationService.UpdateReservation(id, reservationEdit);
+
+            return View(reservation);
+        }
     }
-
-
 }

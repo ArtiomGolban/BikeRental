@@ -65,7 +65,6 @@ namespace BikeRental.Web.Services
             {
                 return null;
             }
-
             var newUser = new UserDBTable
             {
                 Name = userAdd.Name,
@@ -80,5 +79,38 @@ namespace BikeRental.Web.Services
 
             return newUser;
         }
+
+        public void TopUpBalance(UserDBTable user, decimal amount)
+        {
+            var balance = _dbContext.Users.SingleOrDefault(u => u.Id == user.Id);
+            if (balance != null)
+            {
+                balance.Balance += amount;
+                _dbContext.SaveChanges();
+            }
+        }
+
+        public UserDBTable EditEmail(int userId, string email)
+        {
+            var user = _dbContext.Users.Single(u => u.Id == userId);
+
+            user.Email = email;
+
+            _dbContext.SaveChanges();
+
+            return user;
+        }
+
+        public UserDBTable ChangePassword(int userId, string password)
+        {
+            var user = _dbContext.Users.Single(u => u.Id == userId);
+
+            user.Password = password;
+
+            _dbContext.SaveChanges();
+
+            return user;
+        }
+
     }
 }

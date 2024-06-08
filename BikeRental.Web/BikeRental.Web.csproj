@@ -91,7 +91,9 @@
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -224,6 +226,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminReservationsController.cs" />
     <Compile Include="Controllers\AdminUsersControllers.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminBikesController.cs" />
@@ -237,6 +240,7 @@
     </Compile>
     <Compile Include="Models\Admin\BikeAdd.cs" />
     <Compile Include="Models\Admin\BikeEdit.cs" />
+    <Compile Include="Models\Admin\ReservationEdit.cs" />
     <Compile Include="Models\Admin\UserAdd.cs" />
     <Compile Include="Models\Admin\UserEdit.cs" />
     <Compile Include="Models\DTo\AddUserResult.cs" />
@@ -407,6 +411,11 @@
     <Content Include="Views\AdminBikes\Edit.cshtml" />
     <Content Include="Views\Reservations\Create.cshtml" />
     <Content Include="Views\Reservations\MyList.cshtml" />
+    <Content Include="Views\Shared\_AccountHeader.cshtml" />
+    <Content Include="Views\Shared\_AccountLayout.cshtml" />
+    <Content Include="Views\Reservations\Edit.cshtml" />
+    <Content Include="Views\AdminReservation\Edit.cshtml" />
+    <Content Include="Views\AdminReservation\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
