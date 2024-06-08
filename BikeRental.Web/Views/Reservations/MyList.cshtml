@@ -1,0 +1,60 @@
+﻿@using BikeRental.Web.Extension
+
+@{
+    ViewBag.Title = "My reservations";
+}
+<br />
+<br />
+<br />
+<div class="container">
+    <h1>
+        My reservations
+    </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>BikeId</th>
+                <th>Time interval</th>
+                <th>Cost</th>
+                <th>Paid?</th>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reservation in Model)
+            {
+                <tr>
+                    <td>@reservation.BikeId</td>
+                    <td>@reservation.StartDate.ToString("MM/dd/yyyy") - @reservation.EndDate.ToString("MM/dd/yyyy")</td>
+                    <td>@reservation.TotalPrice</td>
+                    <td>
+
+                        @if (reservation.Paid)
+                        {
+                            <span class="badge badge-success">Yes</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-warning">No</span>
+                        }
+                    </td>
+                    <td>
+                        @if (!reservation.Paid)
+                        {
+                            <form method="post" action="@Url.Action("Pay", "Reservations", new { id = reservation.ReservationId })" style="display:inline;">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-success btn-sm">Pay</button>
+                            </form>
+
+                            <form method="post" action="@Url.Action("Cancel", "Reservations", new { id = reservation.ReservationId })" style="display:inline;">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

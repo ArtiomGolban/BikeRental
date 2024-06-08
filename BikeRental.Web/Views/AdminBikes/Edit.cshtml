@@ -1,0 +1,38 @@
+﻿@model BikeRental.Domain.Entities.Bikes.BikeDBTable
+@using BikeRental.Web.Extension
+
+@{
+    ViewBag.Title = "Edit Bike";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h1>Edit Bike</h1>
+    @using (Html.BeginForm("Edit", "AdminBikes", new { id = Model.BikeId }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.BikeId)
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Name, new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Enter name", @required = "required" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Type, new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.Type, new { @class = "form-control", @placeholder = "Enter type", @required = "required" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.PricePerDay, new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.PricePerDay, new { @class = "form-control", @placeholder = "Enter price per day", @required = "required", @type = "number" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.PhotoUrl, new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.PhotoUrl, new { @class = "form-control", @placeholder = "Enter photo URL", @required = "required", @type = "url" })
+        </div>
+
+        <input class="btn btn-success" type="submit" value="Save" />
+    }
+</div>
